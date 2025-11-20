@@ -3,8 +3,9 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import logo from '/logo-Bxcm9Kh9.png';
-import symbolLogo from './assets/symbolLogo.svg';
+import symbolLogo from '/symbol-logo-JjCYN3W9.png';
 import backgroundVideo from '/Firefly Studio lights photoshoot black and white without a model 577781-CMDFDyt-.mp4';
+import MobileNav from './components/MobileNav';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -23,7 +24,7 @@ function App() {
           </video>
         </div>
       )}
-      <header className="px-6 py-8">
+      <header className="px-6 py-8 sticky top-0 z-10 bg-black/50">
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center gap-4">
             <div className="border-2 border-white rounded-full px-4 py-2">
@@ -52,15 +53,13 @@ function App() {
             </button>
           </div>
         </div>
-        <div className="flex justify-center mb-8">
-          <div className="w-24 h-24">
+          <div className="flex justify-center mb-8">
             <img
               src={symbolLogo}
               alt="Symbol Logo"
-              className="w-full h-full object-contain"
+              className="object-contain symbol-logo"
             />
           </div>
-        </div>
         <div className="text-center">
           <div className="mb-4">
             <img
@@ -71,26 +70,25 @@ function App() {
           </div>
         </div>
       </header>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className="flex flex-col items-center justify-center text-white" style={{ minHeight: 'calc(100vh - 16rem)' }}>
+        <div className="flex justify-center gap-4">
+          <button
+            type="button"
+            className="px-4 py-2 border-2 border-white rounded-full bg-transparent text-white"
+            style={{ fontFamily: '"Saira Condensed", sans-serif' }}
+          >
+           Get Styled
+          </button>
+          <button
+            type="button"
+            className="px-4 py-2 border-2 border-white rounded-full bg-transparent text-white"
+            style={{ fontFamily: '"Saira Condensed", sans-serif' }}
+          >
+            Book Now
+          </button>
+        </div>
+      </main>
+      <MobileNav />
     </>
   );
 }
