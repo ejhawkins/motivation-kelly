@@ -1,5 +1,6 @@
 #root {
   text-align: center;
+  margin: 0 auto;
 }
 
 img {
@@ -69,3 +70,171 @@ img {
   transform: translate(-50%, -50%);
 }
 
+/* Primary translucent button base (20% white fill, fully opaque white text) */
+.button,
+.translucent-button {
+  background: rgba(255, 255, 255, 0.20); /* 20% white fill */
+  color: #ffffff; /* fully opaque white text */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 150ms ease, box-shadow 150ms ease, transform 120ms ease;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6); /* improves contrast over video */
+  border-radius: 0; /* removed rounded corners */
+}
+
+.button:hover,
+.translucent-button:hover {
+  background: rgba(255, 255, 255, 0.28);
+  transform: translateY(-1px);
+}
+
+.button:active,
+.translucent-button:active {
+  transform: translateY(0);
+}
+
+.button:focus,
+.translucent-button:focus {
+  outline: 2px solid rgba(255,255,255,0.9);
+  outline-offset: 3px;
+}
+
+/* Hero icon: circular icon-style button using the same translucent fill and full-white text */
+.hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  /* make the hero icon fill most of its container width as requested */
+  width: 90%;
+  height: auto;
+  /* keep a comfortable tap target via padding */
+  padding: 8px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  /* visual transform/transition */
+  transform: none;
+  transition: transform 200ms;
+  margin-bottom: 10px;
+}
+
+.hero-icon:hover {
+  background: rgba(255,255,255,0.28);
+  transform: translateY(-1px);
+}
+
+.hero-icon:focus {
+  outline: 2px solid rgba(255,255,255,0.9);
+  outline-offset: 3px;
+}
+
+/* White / Black CTA variants */
+.btn-white {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(0,0,0,0.08);
+  padding: 0.5rem 1rem;
+  border-radius: 0; /* removed rounded corners */
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 120ms ease, box-shadow 150ms ease;
+}
+.btn-white:hover {
+  background: #fafafa;
+  transform: translateY(-1px);
+}
+.btn-white:focus {
+  outline: 2px solid rgba(0,0,0,0.08);
+  outline-offset: 3px;
+}
+
+.btn-black {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 0.5rem 1rem;
+  border-radius: 0; /* removed rounded corners */
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 120ms ease, box-shadow 150ms ease;
+}
+.btn-black:hover {
+  background: #111111;
+  transform: translateY(-1px);
+}
+.btn-black:focus {
+  outline: 2px solid rgba(255,255,255,0.9);
+  outline-offset: 3px;
+}
+
+/* Overlay centered text above the video (replaces inline styles) */
+.bg-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1100;
+  color: white;
+  text-align: center;
+  pointer-events: none;
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 4vw, 48px);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+  padding: 0 1rem;
+  white-space: pre-wrap;
+}
+
+/* Error banner container that sits at the top of the page */
+.bg-error-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 1rem;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: auto;
+}
+
+/* Visible error banner itself (no rounded corners) */
+.bg-error {
+  background: rgba(0,0,0,0.5);
+  border: 1px solid white;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0; /* removed rounded corners */
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-family: sans-serif;
+}
+
+/* Retry button inside the error banner (no rounded corners) */
+.bg-retry-button {
+  background: transparent;
+  color: white;
+  opacity: 1;
+  font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0; /* removed rounded corners */
+  cursor: pointer;
+}
+
+/* Mobile CTA helpers */
+.saira-cta {
+  font-family: "Saira Condensed", sans-serif;
+  margin-bottom: 30px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+/* Main content minimum height (replaces inline style on <main>) */
+.content-minheight {
+  min-height: calc(100vh - 16rem);
+}

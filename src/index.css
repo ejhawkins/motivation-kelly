@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Load Boldonse from public/fonts. Place Boldonse.woff2 (and optionally .woff) into public/fonts/ */
+@font-face {
+  font-family: 'Boldonse';
+  src: url('/fonts/Boldonse.woff2') format('woff2'),
+       url('/fonts/Boldonse.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Boldonse', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -15,6 +25,8 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --header-height: 6.25rem; /* ~100px; tweak if needed */
 }
 
 a {
@@ -28,8 +40,11 @@ a:hover {
 
 body {
   margin: 0;
+  /* Use a column flex layout and explicit alignment so content centers reliably */
   display: flex;
-  place-items: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -40,22 +55,91 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.2em 1.0em;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 900;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: WHITE;
+  color: #242424;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Add: background video covering the viewport */
+#bg-video {
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* behind page content */
+  pointer-events: none;
+}
+
+/* Keep header fixed at the top of the viewport */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  /* keep header visually consistent with your theme */
+  background: transparent;
+}
+
+/* Reserve space for the fixed header so page content doesn't sit under it.
+   Adjust --header-height if your header grows/shrinks. */
+:root {
+  --header-height: 6.25rem; /* ~100px; tweak if needed */
+}
+
+/* Apply top padding to the main content area. If your project uses a different
+   wrapper element than <main>, add the same rule there (for example .app, #root > div). */
+main {
+  padding-top: var(--header-height);
+}
+
+/* Make symbol logo sizing robust to class-name variations and ensure the image fits */
+.symbol-logo img,
+.symbol-logo,
+.symbolLogo img,
+.symbolLogo {
+  width: 2em;
+  height: 2em;
+  max-width: 100%;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Mobile nav removed per user request */
+
+/* Add diagonal right-pointing arrow to pill */
+.pill-arrow {
+  position: relative;
+  padding-right: 1.1rem; /* leave space for the arrow */
+  overflow: visible; /* ensure pseudo-element is visible outside the pill */
+}
+.pill-arrow::after {
+  content: '';
+  position: absolute;
+  right: 6px; /* adjust to sit near the pill's edge */
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg); /* diagonal */
+  width: 8px;
+  height: 8px;
+  background: white; /* arrow color */
+  border-radius: 0;
+  box-shadow: none;
+  pointer-events: none;
 }
 
 @media (prefers-color-scheme: light) {
