@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "start": "serve -s dist -l $PORT",
     "lint": "eslint easygoing",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -14,7 +15,8 @@
   },
   "dependencies": {
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "serve": "^14.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
