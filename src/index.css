@@ -1,156 +1,162 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* Load Boldonse from public/fonts. Place Boldonse.woff2 (and optionally .woff) into public/fonts/ */
-@font-face {
-  font-family: 'Boldonse';
-  src: url('/fonts/Boldonse.woff2') format('woff2'),
-       url('/fonts/Boldonse.woff') format('woff');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+/* Global CSS Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-  font-family: 'Boldonse', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  line-height: 1.5;
+  /* System font stack for better performance and native feel */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+               'Helvetica Neue', Arial, sans-serif, 
+               'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  line-height: 1.6;
   font-weight: 400;
+  font-size: 16px;
 
+  /* Color scheme support */
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  
+  /* Smooth text rendering */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  --header-height: 6.25rem; /* ~100px; tweak if needed */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
+/* Body reset */
 body {
   margin: 0;
-  /* Use a column flex layout and explicit alignment so content centers reliably */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border: 1px solid transparent;
-  padding: 0.2em 1.0em;
-  font-size: 1em;
-  font-weight: 900;
-  font-family: inherit;
-  background-color: WHITE;
-  color: #242424;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-/* Add: background video covering the viewport */
-#bg-video {
-  position: fixed;
-  inset: 0; /* top:0; right:0; bottom:0; left:0; */
+/* Root container */
+#root {
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1; /* behind page content */
-  pointer-events: none;
 }
 
-/* Keep header fixed at the top of the viewport */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 50;
-  /* keep header visually consistent with your theme */
-  background: transparent;
+/* High contrast for better accessibility */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 700;
 }
 
-/* Reserve space for the fixed header so page content doesn't sit under it.
-   Adjust --header-height if your header grows/shrinks. */
-:root {
-  --header-height: 6.25rem; /* ~100px; tweak if needed */
+p {
+  line-height: 1.6;
 }
 
-/* Apply top padding to the main content area. If your project uses a different
-   wrapper element than <main>, add the same rule there (for example .app, #root > div). */
-main {
-  padding-top: var(--header-height);
+/* Improve link accessibility */
+a {
+  color: #6366f1;
+  text-decoration: none;
+  transition: color 200ms ease;
 }
 
-/* Make symbol logo sizing robust to class-name variations and ensure the image fits */
-.symbol-logo img,
-.symbol-logo,
-.symbolLogo img,
-.symbolLogo {
-  width: 2em;
-  height: 2em;
+a:hover {
+  color: #4f46e5;
+  text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Button reset */
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+/* Image defaults */
+img, picture, video, canvas, svg {
+  display: block;
   max-width: 100%;
-  object-fit: contain;
-  display: inline-block;
+  height: auto;
 }
 
-/* Mobile nav removed per user request */
-
-/* Add diagonal right-pointing arrow to pill */
-.pill-arrow {
-  position: relative;
-  padding-right: 1.1rem; /* leave space for the arrow */
-  overflow: visible; /* ensure pseudo-element is visible outside the pill */
+/* Form elements */
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
 }
-.pill-arrow::after {
-  content: '';
+
+/* List reset */
+ul, ol {
+  list-style: none;
+}
+
+/* Blockquote reset */
+blockquote {
+  quotes: none;
+}
+
+/* Utility Classes */
+.sr-only {
   position: absolute;
-  right: 6px; /* adjust to sit near the pill's edge */
-  top: 50%;
-  transform: translateY(-50%) rotate(45deg); /* diagonal */
-  width: 8px;
-  height: 8px;
-  background: white; /* arrow color */
-  border-radius: 0;
-  box-shadow: none;
-  pointer-events: none;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
-@media (prefers-color-scheme: light) {
+/* Spacing utilities */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.p-1 { padding: 0.5rem; }
+.p-2 { padding: 1rem; }
+.p-3 { padding: 1.5rem; }
+.p-4 { padding: 2rem; }
+
+/* Responsive utilities */
+@media (max-width: 640px) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    font-size: 14px;
   }
-  a:hover {
-    color: #747bff;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor;
+  }
+  
+  button:focus-visible,
+  a:focus-visible {
+    outline-width: 3px;
   }
 }
