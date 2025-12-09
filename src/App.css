@@ -126,17 +126,20 @@
 }
 
 .btn:focus {
-  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline: 3px solid #ffffff;
   outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.5);
 }
 
 .btn:focus:not(:focus-visible) {
   outline: none;
+  box-shadow: none;
 }
 
 .btn:focus-visible {
-  outline: 3px solid rgba(255, 255, 255, 0.8);
+  outline: 3px solid #ffffff;
   outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.5);
 }
 
 .btn-primary {

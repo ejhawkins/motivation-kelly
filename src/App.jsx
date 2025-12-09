@@ -32,6 +32,7 @@ function App() {
   const shareQuote = () => {
     const text = `"${currentQuote.text}" - ${currentQuote.author}`;
     const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    // Opens in a new window - accessible label informs users
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
@@ -60,7 +61,7 @@ function App() {
           <button 
             className="btn btn-secondary" 
             onClick={shareQuote}
-            aria-label="Share this quote on Twitter"
+            aria-label="Share this quote on Twitter (opens in new window)"
           >
             Share on Twitter
           </button>
